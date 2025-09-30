@@ -1,0 +1,30 @@
+# Node/PNPM (monorepo)
+node_modules/
+.pnpm-store/
+dist/
+build/
+apps/**/dist/
+apps/**/build/
+.pnp.* 
+*.log
+# Vite/React
+*.local
+.env
+.env.*
+!.env.example
+# Python/FastAPI
+__pycache__/
+*.pyc
+.venv/
+.envrc
+# Tests/coverage
+coverage/
+.pytest_cache/
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+# Artifacts
+*.zip
+*.tar.gz

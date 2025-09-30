@@ -1,0 +1,208 @@
+{
+  "id": "news2_full",
+  "title": "NEWS2 (Escala 1)",
+  "notes": "Regla roja si cualquier \u00edtem = 3 puntos.",
+  "items": [
+    {
+      "id": "resp_rate",
+      "label": "Frecuencia respiratoria (rpm)",
+      "type": "number",
+      "ranges": [
+        {
+          "max": 8,
+          "points": 3
+        },
+        {
+          "min": 9,
+          "max": 11,
+          "points": 1
+        },
+        {
+          "min": 12,
+          "max": 20,
+          "points": 0
+        },
+        {
+          "min": 21,
+          "max": 24,
+          "points": 2
+        },
+        {
+          "min": 25,
+          "points": 3
+        }
+      ]
+    },
+    {
+      "id": "spo2",
+      "label": "SpO\u2082 (%)",
+      "type": "number",
+      "ranges": [
+        {
+          "max": 91,
+          "points": 3
+        },
+        {
+          "min": 92,
+          "max": 93,
+          "points": 2
+        },
+        {
+          "min": 94,
+          "max": 95,
+          "points": 1
+        },
+        {
+          "min": 96,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "o2",
+      "label": "Ox\u00edgeno suplementario",
+      "type": "checkbox",
+      "points": 2
+    },
+    {
+      "id": "temp",
+      "label": "Temperatura (\u00b0C)",
+      "type": "number",
+      "ranges": [
+        {
+          "max": 35.0,
+          "points": 3
+        },
+        {
+          "min": 35.1,
+          "max": 36.0,
+          "points": 1
+        },
+        {
+          "min": 36.1,
+          "max": 38.0,
+          "points": 0
+        },
+        {
+          "min": 38.1,
+          "max": 39.0,
+          "points": 1
+        },
+        {
+          "min": 39.1,
+          "points": 2
+        }
+      ]
+    },
+    {
+      "id": "sbp",
+      "label": "TAS (mmHg)",
+      "type": "number",
+      "ranges": [
+        {
+          "max": 90,
+          "points": 3
+        },
+        {
+          "min": 91,
+          "max": 100,
+          "points": 2
+        },
+        {
+          "min": 101,
+          "max": 110,
+          "points": 1
+        },
+        {
+          "min": 111,
+          "max": 219,
+          "points": 0
+        },
+        {
+          "min": 220,
+          "points": 3
+        }
+      ]
+    },
+    {
+      "id": "hr",
+      "label": "Frecuencia cardiaca (lpm)",
+      "type": "number",
+      "ranges": [
+        {
+          "max": 40,
+          "points": 3
+        },
+        {
+          "min": 41,
+          "max": 50,
+          "points": 1
+        },
+        {
+          "min": 51,
+          "max": 90,
+          "points": 0
+        },
+        {
+          "min": 91,
+          "max": 110,
+          "points": 1
+        },
+        {
+          "min": 111,
+          "max": 130,
+          "points": 2
+        },
+        {
+          "min": 131,
+          "points": 3
+        }
+      ]
+    },
+    {
+      "id": "conscious",
+      "label": "Conciencia (AVPU)",
+      "type": "select",
+      "options": [
+        {
+          "label": "Alerta (A)",
+          "points": 0
+        },
+        {
+          "label": "Voz (V)",
+          "points": 3
+        },
+        {
+          "label": "Dolor (P)",
+          "points": 3
+        },
+        {
+          "label": "No responde (U)",
+          "points": 3
+        }
+      ]
+    }
+  ],
+  "ranges": [
+    {
+      "min": 0,
+      "max": 0,
+      "label": "Bajo (0)"
+    },
+    {
+      "min": 1,
+      "max": 4,
+      "label": "Bajo (1\u20134)"
+    },
+    {
+      "min": 5,
+      "max": 6,
+      "label": "Medio (5\u20136)"
+    },
+    {
+      "min": 7,
+      "max": 99,
+      "label": "Alto (\u22657)"
+    }
+  ]
+}

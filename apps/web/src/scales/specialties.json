@@ -1,0 +1,29 @@
+{
+  "Todas": [
+    "*"
+  ],
+  "Emergencias/Urgencias": [
+    "news2_full",
+    "gcs",
+    "qsofa"
+  ],
+  "UCI": [
+    "news2_full",
+    "gcs",
+    "qsofa"
+  ],
+  "Geriatr\u00eda": [
+    "braden",
+    "barthel",
+    "katz",
+    "norton",
+    "morse"
+  ],
+  "Oncolog\u00eda": [
+    "karnofsky",
+    "nrs_pain"
+  ],
+  "Seguridad del Paciente": [
+    "morse"
+  ]
+}

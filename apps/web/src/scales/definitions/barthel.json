@@ -1,0 +1,219 @@
+{
+  "id": "barthel",
+  "title": "\u00cdndice de Barthel",
+  "items": [
+    {
+      "id": "comer",
+      "label": "Comer",
+      "type": "select",
+      "options": [
+        {
+          "label": "Independiente",
+          "points": 10
+        },
+        {
+          "label": "Ayuda",
+          "points": 5
+        },
+        {
+          "label": "Dependiente",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "lavarse",
+      "label": "Lavarse",
+      "type": "select",
+      "options": [
+        {
+          "label": "Independiente",
+          "points": 5
+        },
+        {
+          "label": "Dependiente",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "ba\u00f1arse",
+      "label": "Ba\u00f1arse/Ducharse",
+      "type": "select",
+      "options": [
+        {
+          "label": "Independiente",
+          "points": 5
+        },
+        {
+          "label": "Dependiente",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "vestirse",
+      "label": "Vestirse",
+      "type": "select",
+      "options": [
+        {
+          "label": "Independiente",
+          "points": 10
+        },
+        {
+          "label": "Ayuda",
+          "points": 5
+        },
+        {
+          "label": "Dependiente",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "intestino",
+      "label": "Control intestinal",
+      "type": "select",
+      "options": [
+        {
+          "label": "Continente",
+          "points": 10
+        },
+        {
+          "label": "Occ. incontinente",
+          "points": 5
+        },
+        {
+          "label": "Incontinente",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "vejiga",
+      "label": "Control vesical",
+      "type": "select",
+      "options": [
+        {
+          "label": "Continente",
+          "points": 10
+        },
+        {
+          "label": "Occ. incontinente",
+          "points": 5
+        },
+        {
+          "label": "Incontinente",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "retrete",
+      "label": "Uso del retrete",
+      "type": "select",
+      "options": [
+        {
+          "label": "Independiente",
+          "points": 10
+        },
+        {
+          "label": "Ayuda",
+          "points": 5
+        },
+        {
+          "label": "Dependiente",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "trasfer",
+      "label": "Traslados cama\u2013silla",
+      "type": "select",
+      "options": [
+        {
+          "label": "Independiente",
+          "points": 15
+        },
+        {
+          "label": "M\u00ednima ayuda",
+          "points": 10
+        },
+        {
+          "label": "Gran ayuda",
+          "points": 5
+        },
+        {
+          "label": "Dependiente",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "deambul",
+      "label": "Deambulaci\u00f3n",
+      "type": "select",
+      "options": [
+        {
+          "label": "Independiente",
+          "points": 15
+        },
+        {
+          "label": "Ayuda",
+          "points": 10
+        },
+        {
+          "label": "Dependiente",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "escaleras",
+      "label": "Escaleras",
+      "type": "select",
+      "options": [
+        {
+          "label": "Independiente",
+          "points": 10
+        },
+        {
+          "label": "Ayuda",
+          "points": 5
+        },
+        {
+          "label": "Dependiente",
+          "points": 0
+        }
+      ]
+    }
+  ],
+  "ranges": [
+    {
+      "min": 0,
+      "max": 20,
+      "label": "Dependencia total"
+    },
+    {
+      "min": 21,
+      "max": 60,
+      "label": "Severa"
+    },
+    {
+      "min": 61,
+      "max": 90,
+      "label": "Moderada"
+    },
+    {
+      "min": 91,
+      "max": 99,
+      "label": "Leve"
+    },
+    {
+      "min": 100,
+      "max": 100,
+      "label": "Independiente"
+    }
+  ]
+}

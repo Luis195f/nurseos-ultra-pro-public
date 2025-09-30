@@ -1,0 +1,74 @@
+﻿{
+  "categories": [
+    { "name": "Cardiometabólicas", "items": [
+      {"id":"hta","label":"Hipertensión arterial"},
+      {"id":"dm2","label":"Diabetes tipo 2"},
+      {"id":"dlp","label":"Dislipidemia"},
+      {"id":"obes","label":"Obesidad"},
+      {"id":"ic","label":"Insuficiencia cardiaca"},
+      {"id":"fa","label":"Fibrilación auricular"},
+      {"id":"iam_prev","label":"IAM previo"},
+      {"id":"eap","label":"Enfermedad arterial periférica"}
+    ]},
+    { "name": "Respiratorias", "items": [
+      {"id":"epoc","label":"EPOC"},
+      {"id":"asma","label":"Asma"},
+      {"id":"saos","label":"SAOS"},
+      {"id":"fibrosis_pulmonar","label":"Fibrosis pulmonar"}
+    ]},
+    { "name":"Renal/Hepática","items":[
+      {"id":"erc","label":"Enfermedad renal crónica (estadio)"},
+      {"id":"cirrosis","label":"Cirrosis"},
+      {"id":"hepatitis_cronica","label":"Hepatitis crónica"}
+    ]},
+    { "name":"Neurológicas","items":[
+      {"id":"acv_prev","label":"ACV previo"},
+      {"id":"epilepsia","label":"Epilepsia"},
+      {"id":"demencia","label":"Demencia (tipo)"},
+      {"id":"parkinson","label":"Parkinson"},
+      {"id":"em","label":"Esclerosis múltiple"}
+    ]},
+    { "name":"Onco/Hematología","items":[
+      {"id":"cancer_activo","label":"Cáncer activo (tipo)"},
+      {"id":"remision","label":"Remisión"},
+      {"id":"trombofilia","label":"Trombofilia"}
+    ]},
+    { "name":"Infecciosas","items":[
+      {"id":"vih","label":"VIH"},
+      {"id":"hepb","label":"Hepatitis B"},
+      {"id":"hepc","label":"Hepatitis C"},
+      {"id":"tb_prev","label":"Tuberculosis previa"}
+    ]},
+    { "name":"Autoinmunes","items":[
+      {"id":"ar","label":"Artritis reumatoide"},
+      {"id":"les","label":"Lupus (LES)"},
+      {"id":"psoriasis","label":"Psoriasis"},
+      {"id":"eii","label":"EII (CU/Crohn)"}
+    ]},
+    { "name":"Salud mental","items":[
+      {"id":"depresion","label":"Depresión"},
+      {"id":"ansiedad","label":"Ansiedad"},
+      {"id":"tbp","label":"Trastorno bipolar"},
+      {"id":"esquizofrenia","label":"Esquizofrenia"}
+    ]},
+    { "name":"Geriatría/Fragilidad","items":[
+      {"id":"caidas_previas","label":"Caídas previas"},
+      {"id":"incontinencia","label":"Incontinencia"},
+      {"id":"delirium_prev","label":"Delirium previo"},
+      {"id":"upp","label":"Úlcera por presión"}
+    ]},
+    { "name":"Otros frecuentes","items":[
+      {"id":"hipotiroidismo","label":"Hipotiroidismo"},
+      {"id":"hiperuricemia","label":"Hiperuricemia"},
+      {"id":"osteoporosis","label":"Osteoporosis"},
+      {"id":"alergia_meds","label":"Alergias medicamentosas (detallar)"},
+      {"id":"embarazo","label":"Embarazo actual (si aplica)"}
+    ]}
+  ],
+  "presets":[
+    {"id":"uci","label":"Típicos UCI","include":["hta","dm2","ic","fa","epoc","erc","cancer_activo"]},
+    {"id":"urgencias","label":"Típicos Urgencias","include":["hta","dm2","asma","epoc","iam_prev","acv_prev"]},
+    {"id":"geriatria","label":"Típicos Geriatría","include":["hta","ic","demencia","caidas_previas","incontinencia","upp"]},
+    {"id":"oncologia","label":"Típicos Oncología","include":["cancer_activo","remision","trombofilia"]}
+  ]
+}

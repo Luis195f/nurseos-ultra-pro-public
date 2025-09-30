@@ -1,0 +1,38 @@
+--- a/frontend/src/AppRouter.tsx
++++ b/frontend/src/AppRouter.tsx
+@@ -1,9 +1,13 @@
+-﻿// frontend/src/AppRouter.tsx
++// frontend/src/AppRouter.tsx
+ import { BrowserRouter, Routes, Route } from 'react-router-dom';
+ import { Suspense, lazy } from 'react';
+ 
+-const Dashboard = lazy(() => import('./pages/Dashboard'));
+-const EscalaRunner = lazy(() => import('./pages/EscalaRunner'));
++const Home = lazy(() => import('./pages/App'));
++const PatientsDashboard = lazy(() => import('./pages/PatientsDashboard'));
++const Education = lazy(() => import('./pages/Education'));
++const Management = lazy(() => import('./pages/Management'));
++const Research = lazy(() => import('./pages/Research'));
++const AIPanel = lazy(() => import('./pages/AIPanel'));
+ const NotFound = lazy(() => import('./pages/NotFound'));
+ 
+ export default function AppRouter() {
+@@ -11,12 +15,15 @@
+     <BrowserRouter>
+       <Suspense fallback={<div>Cargando…</div>}>
+         <Routes>
+-          <Route path="/" element={<Dashboard />} />
+-          <Route path="/escalas/:id" element={<EscalaRunner />} />
++          <Route path="/" element={<Home />} />
++          <Route path="/patients" element={<PatientsDashboard />} />
++          <Route path="/education" element={<Education />} />
++          <Route path="/management" element={<Management />} />
++          <Route path="/research" element={<Research />} />
++          <Route path="/ai" element={<AIPanel />} />
+           <Route path="*" element={<NotFound />} />
+         </Routes>
+       </Suspense>
+     </BrowserRouter>
+   );
+ }
+-

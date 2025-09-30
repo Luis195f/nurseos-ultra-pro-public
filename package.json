@@ -1,0 +1,11 @@
+{
+  "name": "nurseos-allinone",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/dev.ps1",
+    "dev:backend": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/dev_backend.ps1",
+    "dev:frontend": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/dev_frontend.ps1"
+  },
+  "packageManager": "pnpm@10.17.1"
+}

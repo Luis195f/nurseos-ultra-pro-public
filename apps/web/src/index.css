@@ -1,0 +1,45 @@
+﻿/* src/index.css */
+:root{
+  --accent:      #00B4D8;   /* teal enfermería vivo */
+  --accentSoft:  #E6F9FD;
+  --accentText:  #003644;
+  --sidebarBg:   #F7FBFC;
+
+  --danger:      #E11D48;   /* Código Azul: acento de alerta */
+  --dangerSoft:  #FDE2E7;
+  --dangerText:  #5F0013;
+
+  --bg:   #F5F7FA;
+  --card: #FFFFFF;
+  --text: #111827;
+  --muted:#6B7280;
+  --line: #E5E7EB;
+}
+
+*{ box-sizing: border-box; }
+html, body, #root{ height: 100%; }
+body{
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+a{ color: inherit; text-decoration: none; }
+
+.card{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+}
+.muted{ color: var(--muted); }
+
+.button{
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.button:disabled{ opacity: .6; cursor: not-allowed; }

@@ -1,0 +1,10 @@
+--- a/frontend/src/pages/App.tsx
++++ b/frontend/src/pages/App.tsx
+@@ -8,6 +8,7 @@
+         <Link to="/education">Educación</Link>
+         <Link to="/management">Gestión</Link>
+         <Link to="/research">Investigación</Link>
++              <Link to="/ai">Panel IA</Link>
+       </nav>
+       <div style={{padding:16}} className="grid">
+         <div className="card">

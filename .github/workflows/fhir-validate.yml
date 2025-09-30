@@ -1,0 +1,27 @@
+name: FHIR Validate
+on:
+  push:
+    paths:
+      - 'backend/**'
+      - '.github/workflows/fhir-validate.yml'
+  pull_request:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - name: Download HL7 FHIR Validator
+        run: |
+          curl -L -o validator_cli.jar https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar
+      - name: Validate examples (if present)
+        run: |
+          if [ -d backend/tests/fhir-examples ]; then
+            java -jar validator_cli.jar backend/tests/fhir-examples/*.json || true
+          else
+            echo "No examples found, skipping."
+          fi

@@ -1,0 +1,24 @@
+:root {
+  --glass: rgba(255,255,255,0.12);
+  --blur: 10px;
+  --radius: 20px;
+  --brand: #22d3ee; /* cyan-400 */
+  --brand-2: #a855f7; /* violet-500 */
+  --brand-3: #f43f5e; /* rose-500 */
+}
+body { margin:0; font-family: ui-sans-serif, system-ui;
+  background: radial-gradient(1200px 600px at 5% 5%, #22d3ee22, transparent),
+              radial-gradient(1200px 600px at 95% 15%, #a855f722, transparent),
+              linear-gradient(160deg, #0b1020 0%, #0a0f1a 100%);
+  color:#e5e7eb;
+}
+nav { display:flex; gap:12px; padding:12px; align-items:center; backdrop-filter: blur(var(--blur)); background: var(--glass); border-bottom:1px solid #ffffff22; position:sticky; top:0; }
+a { color: var(--brand); text-decoration:none }
+.card { background: var(--glass); border:1px solid #fff2; border-radius: var(--radius); padding:16px; box-shadow: 0 10px 30px #0006; }
+.button { background: linear-gradient(90deg, var(--brand), var(--brand-2)); border-radius:14px; padding:10px 16px; border:none; color:white; cursor:pointer; box-shadow: 0 8px 24px #22d3ee44; }
+.button:hover { filter: brightness(1.05); transform: translateY(-1px); }
+.grid { display:grid; gap:12px; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); }
+input, select { border-radius: 12px; border: 1px solid #334155; background:#0b1220; color:#cbd5e1; padding:10px; width:100% }
+label { display:block; margin:6px 0 4px; color:#9ca3af; }
+canvas { background:#0b1220; border:1px dashed #334155; border-radius:8px; touch-action:none; }
+.badge { display:inline-block; padding:4px 10px; border-radius:999px; background: linear-gradient(90deg, var(--brand-2), var(--brand-3)); color:white; font-size:12px; margin-left:8px; }

@@ -1,0 +1,138 @@
+{
+  "id": "norton",
+  "title": "Escala de Norton",
+  "items": [
+    {
+      "id": "estado_fisico",
+      "label": "Estado f\u00edsico",
+      "type": "select",
+      "options": [
+        {
+          "label": "Bueno (4)",
+          "points": 4
+        },
+        {
+          "label": "Aceptable (3)",
+          "points": 3
+        },
+        {
+          "label": "Malo (2)",
+          "points": 2
+        },
+        {
+          "label": "Muy malo (1)",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "estado_mental",
+      "label": "Estado mental",
+      "type": "select",
+      "options": [
+        {
+          "label": "L\u00facido (4)",
+          "points": 4
+        },
+        {
+          "label": "Ap\u00e1tico (3)",
+          "points": 3
+        },
+        {
+          "label": "Confuso (2)",
+          "points": 2
+        },
+        {
+          "label": "Estuporoso (1)",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "actividad",
+      "label": "Actividad",
+      "type": "select",
+      "options": [
+        {
+          "label": "Ambulante (4)",
+          "points": 4
+        },
+        {
+          "label": "Camina con ayuda (3)",
+          "points": 3
+        },
+        {
+          "label": "Silla (2)",
+          "points": 2
+        },
+        {
+          "label": "Encamado (1)",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "movilidad",
+      "label": "Movilidad",
+      "type": "select",
+      "options": [
+        {
+          "label": "Normal (4)",
+          "points": 4
+        },
+        {
+          "label": "Lig. limitada (3)",
+          "points": 3
+        },
+        {
+          "label": "Muy limitada (2)",
+          "points": 2
+        },
+        {
+          "label": "Inm\u00f3vil (1)",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "incontinencia",
+      "label": "Incontinencia",
+      "type": "select",
+      "options": [
+        {
+          "label": "Ninguna (4)",
+          "points": 4
+        },
+        {
+          "label": "Ocasional (3)",
+          "points": 3
+        },
+        {
+          "label": "Usual (2)",
+          "points": 2
+        },
+        {
+          "label": "Doble (1)",
+          "points": 1
+        }
+      ]
+    }
+  ],
+  "ranges": [
+    {
+      "min": 5,
+      "max": 12,
+      "label": "Alto (\u226412)"
+    },
+    {
+      "min": 13,
+      "max": 14,
+      "label": "Medio (13\u201314)"
+    },
+    {
+      "min": 15,
+      "max": 20,
+      "label": "Bajo (\u226515)"
+    }
+  ]
+}

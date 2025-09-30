@@ -1,0 +1,121 @@
+{
+  "id": "morse",
+  "title": "Escala de Ca\u00eddas de Morse",
+  "items": [
+    {
+      "id": "hist_caidas",
+      "label": "Historia de ca\u00eddas",
+      "type": "select",
+      "options": [
+        {
+          "label": "S\u00ed (+25)",
+          "points": 25
+        },
+        {
+          "label": "No (+0)",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "diag_sec",
+      "label": "Diagn\u00f3stico secundario",
+      "type": "select",
+      "options": [
+        {
+          "label": "S\u00ed (+15)",
+          "points": 15
+        },
+        {
+          "label": "No (+0)",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "ayuda_marcha",
+      "label": "Ayuda deambular",
+      "type": "select",
+      "options": [
+        {
+          "label": "Muebles (+30)",
+          "points": 30
+        },
+        {
+          "label": "Bast\u00f3n/andador (+15)",
+          "points": 15
+        },
+        {
+          "label": "Ninguna/Reposo (+0)",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "iv_heparina",
+      "label": "Terapia IV/Heparina",
+      "type": "select",
+      "options": [
+        {
+          "label": "S\u00ed (+20)",
+          "points": 20
+        },
+        {
+          "label": "No (+0)",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "marcha",
+      "label": "Marcha/Transferencia",
+      "type": "select",
+      "options": [
+        {
+          "label": "Alterada (+20)",
+          "points": 20
+        },
+        {
+          "label": "D\u00e9bil (+10)",
+          "points": 10
+        },
+        {
+          "label": "Normal/Reposo (+0)",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "estado_mental",
+      "label": "Estado mental",
+      "type": "select",
+      "options": [
+        {
+          "label": "Sobreestima/olvida (+15)",
+          "points": 15
+        },
+        {
+          "label": "Orientado (+0)",
+          "points": 0
+        }
+      ]
+    }
+  ],
+  "ranges": [
+    {
+      "min": 0,
+      "max": 24,
+      "label": "Bajo (0\u201324)"
+    },
+    {
+      "min": 25,
+      "max": 44,
+      "label": "Moderado (25\u201344)"
+    },
+    {
+      "min": 45,
+      "max": 999,
+      "label": "Alto (\u226545)"
+    }
+  ]
+}

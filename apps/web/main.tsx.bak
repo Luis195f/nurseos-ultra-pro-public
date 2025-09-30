@@ -1,0 +1,28 @@
+import RegistryPage from "./pages/RegistryPage";
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import App from './pages/App'
+import EConsent from './pages/EConsent'
+import PatientsDashboard from './pages/PatientsDashboard'
+import Education from './pages/Education'
+import Management from './pages/Management'
+import Research from './pages/Research'
+import OidcCallback from './pages/OidcCallback'
+import './styles.css'
+
+createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App/>} />
+        <Route path="/patients" element={<PatientsDashboard/>} />
+        <Route path="/education" element={<Education/>} />
+        <Route path="/management" element={<Management/>} />
+        <Route path="/research" element={<Research/>} />
+        <Route path="/oidc/callback" element={<OidcCallback/>} />
+        <Route path="/registry" element={<RegistryPage/>} />
+</Routes>
+    </BrowserRouter>
+  </React.StrictMode>
+)

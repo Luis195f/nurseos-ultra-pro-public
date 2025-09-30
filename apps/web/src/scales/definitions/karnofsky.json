@@ -1,0 +1,74 @@
+{
+  "id": "karnofsky",
+  "title": "\u00cdndice de Karnofsky (KPS)",
+  "items": [
+    {
+      "id": "kps",
+      "label": "Estado funcional",
+      "type": "select",
+      "options": [
+        {
+          "label": "100 \u2014 Normal",
+          "points": 100
+        },
+        {
+          "label": "90 \u2014 Actividad normal",
+          "points": 90
+        },
+        {
+          "label": "80 \u2014 Con esfuerzo",
+          "points": 80
+        },
+        {
+          "label": "70 \u2014 Se cuida solo",
+          "points": 70
+        },
+        {
+          "label": "60 \u2014 Ayuda ocasional",
+          "points": 60
+        },
+        {
+          "label": "50 \u2014 Ayuda considerable",
+          "points": 50
+        },
+        {
+          "label": "40 \u2014 Requiere cuidados",
+          "points": 40
+        },
+        {
+          "label": "30 \u2014 Hospitalizaci\u00f3n",
+          "points": 30
+        },
+        {
+          "label": "20 \u2014 Muy enfermo",
+          "points": 20
+        },
+        {
+          "label": "10 \u2014 Moribundo",
+          "points": 10
+        },
+        {
+          "label": "0 \u2014 Fallecido",
+          "points": 0
+        }
+      ]
+    }
+  ],
+  "ranges": [
+    {
+      "min": 0,
+      "max": 40,
+      "label": "Dependencia alta (\u226440)"
+    },
+    {
+      "min": 50,
+      "max": 70,
+      "label": "Moderada (50\u201370)"
+    },
+    {
+      "min": 80,
+      "max": 100,
+      "label": "Baja/Independiente (\u226580)"
+    }
+  ]
+}

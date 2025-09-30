@@ -1,0 +1,45 @@
+{
+  "meta": { "version": "0.1-open", "disclaimer": "Sugerencias clínicas no oficiales. No sustituye juicio profesional." },
+  "rules": [
+    {
+      "id": "risk_falls",
+      "when": { "morse": { "gte": 45 } },
+      "suggest": {
+        "diagnosis": "Riesgo de caídas",
+        "outcomes": ["Mantenerse sin caídas en 24-48h", "Deambulación segura"],
+        "interventions": ["Cama en posición baja", "Barandas elevadas", "Timbre al alcance", "Educación a paciente/familia"]
+      },
+      "evidence": "Morse ≥ 45"
+    },
+    {
+      "id": "pressure_injury",
+      "when": { "braden": { "lte": 16 } },
+      "suggest": {
+        "diagnosis": "Riesgo de lesión por presión",
+        "outcomes": ["Integridad cutánea conservada", "Sin nuevas lesiones"],
+        "interventions": ["Cambios posturales c/2h", "Superficie especial de apoyo", "Valoración piel diaria"]
+      },
+      "evidence": "Braden ≤ 16"
+    },
+    {
+      "id": "respiratory_deterioration",
+      "when": { "news2_any": { "gte": 3 } },
+      "suggest": {
+        "diagnosis": "Riesgo de deterioro respiratorio",
+        "outcomes": ["SpO₂ ≥ 92%", "FR 12-20 rpm"],
+        "interventions": ["Oxigenoterapia si precisa", "Monitorización continua", "Gasometría si clínica"]
+      },
+      "evidence": "NEWS2 parámetro ≥ 3"
+    },
+    {
+      "id": "hyperglycemia",
+      "when": { "glucose": { "gte": 250 } },
+      "suggest": {
+        "diagnosis": "Alteración de la glucemia",
+        "outcomes": ["Glucemias 100-180 mg/dL"],
+        "interventions": ["Control de glucemias c/6h", "Administrar insulina según pauta", "Educación sobre hiperglucemia"]
+      },
+      "evidence": "Glucemia basal ≥ 250 mg/dL"
+    }
+  ]
+}

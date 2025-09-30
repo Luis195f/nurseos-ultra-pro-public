@@ -1,0 +1,64 @@
+{
+  "id": "qsofa",
+  "title": "qSOFA",
+  "notes": "\u22652 puntos = alto riesgo.",
+  "items": [
+    {
+      "id": "rr",
+      "label": "FR \u226522 rpm",
+      "type": "number",
+      "ranges": [
+        {
+          "min": 22,
+          "points": 1
+        },
+        {
+          "max": 21,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "sbp",
+      "label": "TAS \u2264100 mmHg",
+      "type": "number",
+      "ranges": [
+        {
+          "max": 100,
+          "points": 1
+        },
+        {
+          "min": 101,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "mentation",
+      "label": "Estado mental alterado",
+      "type": "select",
+      "options": [
+        {
+          "label": "No",
+          "points": 0
+        },
+        {
+          "label": "S\u00ed",
+          "points": 1
+        }
+      ]
+    }
+  ],
+  "ranges": [
+    {
+      "min": 0,
+      "max": 1,
+      "label": "Bajo (0\u20131)"
+    },
+    {
+      "min": 2,
+      "max": 3,
+      "label": "Alto (\u22652)"
+    }
+  ]
+}

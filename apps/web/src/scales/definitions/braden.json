@@ -1,0 +1,68 @@
+{
+  "id": "braden",
+  "title": "Braden (simpl.)",
+  "items": [
+    {
+      "id": "sens",
+      "label": "Percepci\u00f3n sensorial limitada",
+      "type": "select",
+      "options": [
+        {
+          "label": "No",
+          "points": 0
+        },
+        {
+          "label": "S\u00ed",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "id": "hum",
+      "label": "Humedad",
+      "type": "select",
+      "options": [
+        {
+          "label": "Baja",
+          "points": 0
+        },
+        {
+          "label": "Alta",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "id": "mov",
+      "label": "Movilidad",
+      "type": "select",
+      "options": [
+        {
+          "label": "Normal",
+          "points": 0
+        },
+        {
+          "label": "Limitada",
+          "points": 3
+        }
+      ]
+    }
+  ],
+  "ranges": [
+    {
+      "min": 0,
+      "max": 12,
+      "label": "Riesgo alto"
+    },
+    {
+      "min": 13,
+      "max": 14,
+      "label": "Riesgo moderado"
+    },
+    {
+      "min": 15,
+      "max": 18,
+      "label": "Riesgo leve"
+    }
+  ]
+}

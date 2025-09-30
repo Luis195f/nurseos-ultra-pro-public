@@ -1,0 +1,41 @@
+{
+  "id": "katz",
+  "title": "Katz (ABVD)",
+  "items": [
+    {
+      "id": "bano",
+      "label": "Ba\u00f1o asistido",
+      "type": "checkbox",
+      "points": 1
+    },
+    {
+      "id": "vestido",
+      "label": "Vestido asistido",
+      "type": "checkbox",
+      "points": 1
+    },
+    {
+      "id": "toilet",
+      "label": "Uso del WC asistido",
+      "type": "checkbox",
+      "points": 1
+    }
+  ],
+  "ranges": [
+    {
+      "min": 0,
+      "max": 1,
+      "label": "Independiente"
+    },
+    {
+      "min": 2,
+      "max": 3,
+      "label": "Dependencia leve"
+    },
+    {
+      "min": 4,
+      "max": 99,
+      "label": "Dependencia importante"
+    }
+  ]
+}

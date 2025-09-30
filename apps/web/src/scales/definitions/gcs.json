@@ -1,0 +1,104 @@
+{
+  "id": "gcs",
+  "title": "Escala de Glasgow (GCS)",
+  "items": [
+    {
+      "id": "eye",
+      "label": "Apertura ocular (E)",
+      "type": "select",
+      "options": [
+        {
+          "label": "E4: Espont\u00e1nea",
+          "points": 4
+        },
+        {
+          "label": "E3: A la voz",
+          "points": 3
+        },
+        {
+          "label": "E2: Al dolor",
+          "points": 2
+        },
+        {
+          "label": "E1: Ninguna",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "verbal",
+      "label": "Respuesta verbal (V)",
+      "type": "select",
+      "options": [
+        {
+          "label": "V5: Orientado",
+          "points": 5
+        },
+        {
+          "label": "V4: Confuso",
+          "points": 4
+        },
+        {
+          "label": "V3: Palabras inapropiadas",
+          "points": 3
+        },
+        {
+          "label": "V2: Sonidos incomprensibles",
+          "points": 2
+        },
+        {
+          "label": "V1: Ninguna",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "motor",
+      "label": "Respuesta motora (M)",
+      "type": "select",
+      "options": [
+        {
+          "label": "M6: Obedece \u00f3rdenes",
+          "points": 6
+        },
+        {
+          "label": "M5: Localiza dolor",
+          "points": 5
+        },
+        {
+          "label": "M4: Retirada al dolor",
+          "points": 4
+        },
+        {
+          "label": "M3: Flexi\u00f3n anormal",
+          "points": 3
+        },
+        {
+          "label": "M2: Extensi\u00f3n",
+          "points": 2
+        },
+        {
+          "label": "M1: Ninguna",
+          "points": 1
+        }
+      ]
+    }
+  ],
+  "ranges": [
+    {
+      "min": 3,
+      "max": 8,
+      "label": "Grave (\u22648)"
+    },
+    {
+      "min": 9,
+      "max": 12,
+      "label": "Moderado (9\u201312)"
+    },
+    {
+      "min": 13,
+      "max": 15,
+      "label": "Leve (13\u201315)"
+    }
+  ]
+}
