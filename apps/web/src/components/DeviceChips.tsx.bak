@@ -1,0 +1,95 @@
+// apps/web/src/components/DeviceChips.tsx
+import React from "react";
+import { ensurePatient, registerDeviceUse, hasFHIR } from "../lib/fhir";
+
+export type DeviceItem = { code: string; text: string };
+
+export const DEVICE_CATALOG: DeviceItem[] = [
+  { code: "PIV", text: "PIV (Vía periférica)" },
+  { code: "CVC", text: "CVC (Vía central)" },
+  { code: "NGT", text: "Sonda nasogástrica" },
+  { code: "VENT", text: "Ventilación invasiva" },
+  { code: "O2", text: "Cánula de O₂" },
+  { code: "FOLEY", text: "Sonda vesical Foley" },
+  { code: "PICC", text: "PICC" },
+  { code: "TRACH", text: "Traqueostomía" },
+];
+
+const key = (pid: string) => `nurseos:devices:${pid}`;
+const load = (pid: string) => {
+  try {
+    return JSON.parse(localStorage.getItem(key(pid)) ?? "[]");
+  } catch {
+    return [];
+  }
+};
+const save = (pid: string, arr: string[]) =>
+  localStorage.setItem(key(pid), JSON.stringify(arr));
+
+type Props = {
+  /** Si lo pasas, se persiste por paciente y si hay FHIR se registra DeviceUse */
+  patientId?: string;
+  /** Modo controlado */
+  selected?: string[];
+  /** Modo no controlado */
+  defaultSelected?: string[];
+  onChange?: (codes: string[]) => void;
+};
+
+export default function DeviceChips({
+  patientId,
+  selected,
+  defaultSelected,
+  onChange,
+}: Props) {
+  const [codes, setCodes] = React.useState<string[]>(
+    selected ?? defaultSelected ?? (patientId ? load(patientId) : [])
+  );
+
+  // Si el padre lo controla, refleja cambios
+  React.useEffect(() => {
+    if (selected) setCodes(selected);
+  }, [selected]);
+
+  async function toggle(code: string) {
+    const next = codes.includes(code)
+      ? codes.filter((c) => c !== code)
+      : [...codes, code];
+
+    setCodes(next);
+    onChange?.(next);
+    if (patientId) save(patientId, next);
+
+    // Si se ACTIVÓ el chip y hay FHIR, registra el DeviceUse
+    if (hasFHIR && patientId && !codes.includes(code)) {
+      try {
+        await ensurePatient(patientId);
+        const item = DEVICE_CATALOG.find((d) => d.code === code);
+        await registerDeviceUse(patientId, { code, text: item?.text });
+      } catch (e) {
+        console.error("Error FHIR (DeviceUse):", e);
+      }
+    }
+  }
+
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+      {DEVICE_CATALOG.map((d) => {
+        const active = codes.includes(d.code);
+        return (
+          <button
+            key={d.code}
+            type="button"
+            onClick={() => toggle(d.code)}
+            className={`px-3 py-1 rounded-full border ${
+              active ? "bg-emerald-100 border-emerald-300" : "bg-white border-gray-300"
+            }`}
+          >
+            {d.text}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+

@@ -1,32 +1,47 @@
-const BASE = import.meta.env.VITE_FHIR_BASE_URL?.trim();
-export const hasFHIR = !!BASE;
+// Cliente FHIR mínimo y helpers “seguros” (no fallan si no hay servidor)
+const BASE = (import.meta as any).env?.VITE_FHIR_BASE_URL?.trim?.() || "";
 
-async function req(method: string, path: string, body?: any) {
-  if (!BASE) throw new Error("FHIR BASE no configurado");
-  const r = await fetch(`${BASE.replace(/\/$/,'')}/${path}`, {
-    method, headers: { "Content-Type": "application/fhir+json" },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
-  return r.json();
+export function hasFHIR(): boolean {
+  return !!BASE;
 }
 
-export async function ensurePatient(id: string) {
-  if (!hasFHIR) return;
-  const patient = { resourceType: "Patient", id, name: [{ family: "Demo", given: ["Paciente"] }] };
-  await req("PUT", `Patient/${id}`, patient);
+// POST genérico
+async function fhirPost(resourceType: string, body: any) {
+  const res = await fetch(`${BASE}/${resourceType}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/fhir+json" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error(`FHIR ${resourceType} ${res.status}`);
+  return res.json();
 }
 
-export async function registerDeviceUse(patientId: string, label: string) {
-  if (!hasFHIR) return;
-  const device = await req("POST", "Device", {
-    resourceType: "Device", status: "active", distinctIdentifier: label, type: { text: label }
+// Garantiza que el Patient exista (stub amable para demo)
+export async function ensurePatient(patientId: string) {
+  if (!patientId) return null;
+  if (!hasFHIR()) return { id: patientId }; // sin red: no-op amable
+  // Intento naive de read; si 404, crea
+  const read = await fetch(`${BASE}/Patient/${encodeURIComponent(patientId)}`);
+  if (read.ok) return read.json();
+  if (read.status !== 404) throw new Error("FHIR Patient read error");
+  return fhirPost("Patient", {
+    resourceType: "Patient",
+    id: patientId,
+    identifier: [{ system: "urn:nurseos:id", value: patientId }],
   });
-  await req("POST", "DeviceUseStatement", {
+}
+
+// Registra uso de dispositivo (DeviceUseStatement) súper simple
+export async function registerDeviceUse(patientId: string, display: string) {
+  if (!hasFHIR() || !patientId || !display) return null;
+  const body = {
     resourceType: "DeviceUseStatement",
+    status: "active",
     subject: { reference: `Patient/${patientId}` },
-    device:  { reference: `Device/${device.id}` },
-    status: "active"
-  });
+    device: { display },
+    recordedOn: new Date().toISOString(),
+  };
+  return fhirPost("DeviceUseStatement", body);
 }
+
 
