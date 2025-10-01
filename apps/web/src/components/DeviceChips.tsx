@@ -1,38 +1,34 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { key, load, save } from "../lib/store";
+import { ensurePatient, hasFHIR, registerDeviceUse } from "../lib/fhir";
 
-export type DeviceItem = { code:string; text:string };
-
-export const DEVICE_CATALOG: DeviceItem[] = [
-  { code:"PIV",  text:"PIV (Vía periférica)" },
-  { code:"CVC",  text:"CVC (Vía central)" },
-  { code:"NGT",  text:"Sonda nasogástrica" },
-  { code:"VENT", text:"Ventilación invasiva" },
-  { code:"O2",   text:"Cánula de O₂" },
-  { code:"FOLEY",text:"Sonda vesical Foley" },
-  { code:"PICC", text:"PICC" },
-  { code:"TRACH",text:"Traqueostomía" },
+const OPTIONS = [
+  "Oxígeno", "Monitor", "Bomba infusión", "SNG", "Sonda vesical",
+  "Catéter central", "CPAP/BiPAP", "Marcapasos transitorio"
 ];
 
-export default function DeviceChips({
-  selected,
-  onToggle,
-}:{
-  selected: string[];
-  onToggle: (code:string)=>void;
-}){
+export default function DeviceChips({ patientId }: { patientId: string }) {
+  const k = key("devices", patientId);
+  const [val, setVal] = useState<string[]>(() => load<string[]>(k, []));
+
+  useEffect(() => { save(k, val); }, [k, val]);
+  useEffect(() => { if (hasFHIR) ensurePatient(patientId); }, [patientId]);
+
+  async function toggle(lbl: string) {
+    const next = val.includes(lbl) ? val.filter(x => x !== lbl) : [...val, lbl];
+    setVal(next);
+    if (hasFHIR && next.includes(lbl)) {
+      try { await registerDeviceUse(patientId, lbl); } catch { /* ignora por ahora */ }
+    }
+  }
+
   return (
-    <div style={{display:"flex", flexWrap:"wrap", gap:8}}>
-      {DEVICE_CATALOG.map(d => (
-        <button key={d.code}
-          onClick={()=>onToggle(d.code)}
-          style={{
-            padding:"6px 10px",
-            borderRadius:20,
-            border:"1px solid #ddd",
-            background: selected.includes(d.code) ? "#d1fae5" : "#fff",
-            cursor:"pointer"
-          }}>
-          {d.text}
+    <div className="flex flex-wrap gap-2">
+      {OPTIONS.map(lbl => (
+        <button key={lbl}
+          onClick={() => toggle(lbl)}
+          className={`px-3 py-1 rounded-full border ${val.includes(lbl) ? "bg-red-600 text-white border-red-700" : "bg-white hover:bg-neutral-100"}`}>
+          {lbl}
         </button>
       ))}
     </div>
