@@ -17,6 +17,10 @@ const ADT        = lazy(() => import("./pages/ADT"));
 const BCMAHospital = lazy(() => import("./pages/BCMAHospital"));
 const Audit = lazy(() => import("./pages/Audit"));
 const BCMAPro = lazy(() => import("./pages/BCMAPro"));
+const AIPanel   = lazy(() => import("./pages/AIPanel"));
+const CodeBlue  = lazy(() => import("./pages/CodeBlue"));
+const Deceased  = lazy(() => import("./pages/Deceased"));
+const Patient   = lazy(() => import("./pages/PatientRecord")); // opcional si la usas
 
 function NotFound(){ return <div style={{ padding:16 }}>404 — Página no encontrada</div>; }
 
@@ -38,6 +42,11 @@ export default function AppRouter(){
           <Route path="bcma-hg" element={<BCMAHospital />} />
           <Route path="audit" element={<Audit />} />
           <Route path="bcma-pro" element={<BCMAPro />} />
+          <Route path="ai" element={<AIPanel />} />
+          <Route path="adt/code-blue" element={<CodeBlue />} />
+          <Route path="code-blue" element={<CodeBlue />} />
+          <Route path="deceased" element={<Deceased />} />
+          <Route path="patients/:id" element={<Patient />} /> {/* si aplicase */}
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/" element={<Navigate to="/registry" replace />} />
