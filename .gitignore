@@ -30,3 +30,6 @@ Thumbs.db
 *.tar.gz
 *.ts
 `nurseos.db
+
+# local sqlite
+urseos.db
