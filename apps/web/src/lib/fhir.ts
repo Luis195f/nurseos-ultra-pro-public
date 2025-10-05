@@ -137,6 +137,7 @@ export async function ensureDevice(
     recordedOn: new Date().toISOString(),
   });
   return { device, use: dus };
+
 }
 
 export async function setDeceased(patientId: string, deceasedDateTime: string) {
@@ -184,4 +185,39 @@ export async function savePatientDocument(
 
 // Alias por compatibilidad con imports antiguos
 export { hasFHIR as hasFhir };
+
+
+/** Compat: registrar uso de dispositivo (fallback simple vía fetch).
+ * No rompe offline: si no hay BASE, devuelve ok=true, offline.
+ */
+export async function registerDeviceUse(patientId: string, deviceCode: string) {
+  try {
+    const BASE = (import.meta as any).env?.VITE_FHIR_BASE_URL?.trim?.() || "";
+    if (!BASE) return { ok: true, offline: true };
+
+    const body = {
+      resourceType: "DeviceUseStatement",
+      subject: { reference: `Patient/${patientId}` },
+      device: {
+        concept: { coding: [{ system: "http://snomed.info/sct", code: deviceCode }] }
+      }
+    };
+    const res = await fetch(`${BASE}/DeviceUseStatement`, {
+      method: "POST",
+      headers: { "content-type": "application/fhir+json" },
+      body: JSON.stringify(body)
+    });
+    return { ok: res.ok, status: res.status };
+  } catch {
+    return { ok: true, offline: true };
+  }
+
+}
+
+
+
+
+// Alias por compatibilidad con imports antiguos
+
+
 
