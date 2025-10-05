@@ -1,61 +1,95 @@
 import React, { useState } from "react";
-const FHIR = (import.meta as any).env.VITE_FHIR_BASE_URL || "";
-const AGENTS = (import.meta as any).env.VITE_AGENTS_API_BASE || "";
+import { STORE_KEYS } from "@/lib/store";
 
-export default function Deceased(){
+type DeceasedRecord = {
+  patientId: string;
+  dateTime: string;
+  cause: string;
+};
+
+const STORAGE_PREFIX = "nurseos:";
+
+export default function Deceased() {
   const [patientId, setPatientId] = useState("");
-  const [date, setDate] = useState(()=> new Date().toISOString().slice(0,16)); // yyyy-mm-ddThh:mm
+  const [dateTimeLocal, setDateTimeLocal] = useState(
+    () => new Date().toISOString().slice(0, 16) // yyyy-mm-ddThh:mm
+  );
+  const [cause, setCause] = useState("");
+  const [status, setStatus] = useState("");
 
-  async function onSave(){
-    if(!patientId) return alert("Falta Patient ID");
-    if(FHIR){
-      const bundle = {
-        resourceType:"Bundle", type:"transaction", entry:[
-          { // marcar fallecido en Patient
-            request:{ method:"PATCH", url:`Patient/${patientId}` },
-            resource:{ deceasedDateTime: new Date(date).toISOString(), resourceType:"Patient", id: patientId }
-          },
-          { // DocumentReference para auditoría clínica
-            request:{ method:"POST", url:"DocumentReference" },
-            resource:{
-              resourceType:"DocumentReference",
-              status:"current",
-              type:{ text:"Fallecimiento" },
-              category:[{ text:"deceased" }],
-              subject:{ reference:`Patient/${patientId}` },
-              date: new Date(date).toISOString(),
-              content:[{ attachment:{ contentType:"text/plain", data:btoa("Registro de fallecimiento en NurseOS") } }]
-            }
-          }
-        ]
-      };
-      const res = await fetch(FHIR, { method:"POST", headers:{ "Content-Type":"application/fhir+json" }, body: JSON.stringify(bundle) });
-      if(!res.ok) return alert("FHIR error " + res.status);
-    }else{
-      localStorage.setItem(`nurseos/deceased/${patientId}`, JSON.stringify({ date }));
-    }
-    if(AGENTS){
-      try{ await fetch(`${AGENTS}/audit/log`,{method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({
-        ts:new Date().toISOString(), user:"nurse-demo", action:"deceased.save", resourceType:"Patient", patientId, allow:true, reason:"deceased", details:{ date }
-      })}); }catch(_){}
-    }
-    alert("✅ Fallecimiento registrado");
+  function persist(r: DeceasedRecord) {
+    const key = STORAGE_PREFIX + STORE_KEYS.DECEASED;
+    const prev = JSON.parse(localStorage.getItem(key) || "[]") as DeceasedRecord[];
+    localStorage.setItem(key, JSON.stringify([...prev, r]));
+  }
+
+  function handleSave() {
+    if (!patientId) return;
+    persist({
+      patientId,
+      dateTime: new Date(dateTimeLocal).toISOString(),
+      cause,
+    });
+    setStatus("Paciente marcado como fallecido"); // <- texto exacto esperado
+    setPatientId("");
+    setCause("");
   }
 
   return (
-    <section style={{display:"grid", gap:12, maxWidth:640}}>
+    <section style={{ display: "grid", gap: 12, maxWidth: 640 }}>
       <h1>Fallecidos</h1>
+
       <div>
-        <label>Patient ID</label>
-        <input value={patientId} onChange={e=>setPatientId(e.target.value)} style={{marginLeft:8}}/>
+        <label htmlFor="dec-pid">Patient ID</label>
+        <input
+          id="dec-pid"
+          style={{ marginLeft: 8 }}
+          value={patientId}
+          onChange={(e) => setPatientId(e.target.value)}
+        />
       </div>
+
       <div>
-        <label>Fecha y hora</label>
-        <input type="datetime-local" value={date} onChange={e=>setDate(e.target.value)} style={{marginLeft:8}}/>
+        <label htmlFor="dec-dt">Fecha y hora</label>
+        <input
+          id="dec-dt"
+          type="datetime-local"
+          style={{ marginLeft: 8 }}
+          value={dateTimeLocal}
+          onChange={(e) => setDateTimeLocal(e.target.value)}
+        />
       </div>
-      <button onClick={onSave} style={{padding:"10px 14px", borderRadius:8, background:"#111827", color:"#fff", border:"none"}}>
-        Guardar
+
+      <div>
+        <label htmlFor="dec-cause">Causa</label>
+        <input
+          id="dec-cause"
+          placeholder="p.ej., paro cardiorrespiratorio"
+          style={{ marginLeft: 8, width: "100%" }}
+          value={cause}
+          onChange={(e) => setCause(e.target.value)}
+        />
+      </div>
+
+      <button
+        onClick={handleSave}
+        style={{
+          padding: "10px 14px",
+          borderRadius: 8,
+          background: "rgb(17, 24, 39)",
+          color: "#fff",
+          border: "none",
+        }}
+      >
+        Registrar fallecimiento
       </button>
+
+      {status && (
+        <p role="status" aria-live="polite">
+          {status}
+        </p>
+      )}
     </section>
   );
 }
+
