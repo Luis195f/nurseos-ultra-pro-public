@@ -28,4 +28,8 @@ Thumbs.db
 # Artifacts
 *.zip
 *.tar.gz
-*.ts
+
+nurseos.db
+*.db
+
+nurseos.db
