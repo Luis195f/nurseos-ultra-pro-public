@@ -7,5 +7,10 @@
     "dev:backend": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/dev_backend.ps1",
     "dev:frontend": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/dev_frontend.ps1"
   },
-  "packageManager": "pnpm@10.17.1"
+  "packageManager": "pnpm@10.17.1",
+  "devDependencies": {
+    "@types/node": "^24.7.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
 }
