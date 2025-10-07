@@ -36,3 +36,7 @@ nurseos.db
 
 nurseos.db
 >>>>>>> origin/main
+
+apps/web/playwright-report/
+
+apps/web/test-results/

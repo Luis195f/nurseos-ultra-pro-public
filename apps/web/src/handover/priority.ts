@@ -1,10 +1,13 @@
-// Lógica de prioridad + tests
+export type Priority = "baja" | "media" | "alta";
 
-// Builders FHIR (Bundle/Composition/Observations/Provenance) + test
+export function computePriority(input: { news2: number; invasive: boolean; falls: boolean; isolation: boolean; }): Priority {
+  const base: Priority = input.news2 >= 7 ? "alta" : input.news2 >= 5 ? "media" : "baja";
+  const risks = [input.invasive, input.falls, input.isolation].filter(Boolean).length;
 
-// Botón de micrófono (Web Speech API) y página Handover
-
-// Cola offline/outbox + IndexedDB
-
-// Telemetría mínima FE
-
+  if (risks >= 2) return "alta";
+  if (risks === 1) {
+    if (base === "baja") return "media";
+    if (base === "media") return "alta";
+  }
+  return base;
+}
