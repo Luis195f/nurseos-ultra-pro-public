@@ -1,4 +1,4 @@
-﻿// src/services/agentsClient.ts
+// src/services/agentsClient.ts
 const API = import.meta.env.VITE_AGENTS_API_BASE || "http://localhost:8070";
 
 async function post<T = any>(path: string, body: any): Promise<T> {

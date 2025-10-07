@@ -1,4 +1,4 @@
-﻿import { useEffect } from "react";
+import { useEffect } from "react";
 import { userManager } from "../auth/oidc";
 
 export default function OidcSilentRenew() {

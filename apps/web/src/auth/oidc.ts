@@ -1,4 +1,4 @@
-﻿import { UserManager, WebStorageStateStore, Log, type UserManagerSettings } from "oidc-client-ts";
+import { UserManager, WebStorageStateStore, Log, type UserManagerSettings } from "oidc-client-ts";
 
 const origin = window.location.origin;
 
