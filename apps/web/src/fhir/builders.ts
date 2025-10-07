@@ -3,12 +3,12 @@ type Priority = "baja" | "media" | "alta";
 export function buildHandoverBundle(
   form: { patientId: string; authorId: string; news2: number; notes?: string; invasive?: boolean; },
   state: { priority: Priority }
-){
+) {
   const now = new Date().toISOString();
-  const cid = "composition-" + Math.random().toString(36).slice(2,9);
-  const o1 = "obs-news2-" + Math.random().toString(36).slice(2,9);
-  const o2 = "obs-priority-" + Math.random().toString(36).slice(2,9);
   const pid = form.patientId;
+  const cid = "composition-" + Math.random().toString(36).slice(2,9);
+  const o1  = "obs-news2-"  + Math.random().toString(36).slice(2,9);
+  const o2  = "obs-prio-"   + Math.random().toString(36).slice(2,9);
 
   const composition = {
     resourceType: "Composition",
@@ -50,10 +50,10 @@ export function buildHandoverBundle(
     resourceType: "Bundle",
     type: "transaction",
     entry: [
-      { fullUrl: `urn:uuid:${cid}`, resource: composition, request: { method: "POST", url: "Composition" }},
-      { fullUrl: `urn:uuid:${o1}`, resource: obsNews2, request: { method: "POST", url: "Observation" }},
-      { fullUrl: `urn:uuid:${o2}`, resource: obsPriority, request: { method: "POST", url: "Observation" }},
-      { resource: prov, request: { method: "POST", url: "Provenance" }},
+      { fullUrl:`urn:uuid:${cid}`, resource: composition,  request:{ method:"POST", url:"Composition" } },
+      { fullUrl:`urn:uuid:${o1}`,  resource: obsNews2,     request:{ method:"POST", url:"Observation" } },
+      { fullUrl:`urn:uuid:${o2}`,  resource: obsPriority,  request:{ method:"POST", url:"Observation" } },
+      { resource: prov,            request:{ method:"POST", url:"Provenance"  } },
     ]
   };
 }
