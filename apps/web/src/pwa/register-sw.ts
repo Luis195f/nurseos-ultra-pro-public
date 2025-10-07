@@ -1,5 +1,3 @@
-export function registerSW(){
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js").catch(console.error);
-  }
-}
+Write-FromClipboard apps/web/public/sw.js
+Write-FromClipboard apps/web/src/pwa/register-sw.ts
+

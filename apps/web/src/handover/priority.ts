@@ -1,7 +1,19 @@
-export function computePriority({news2=0, invasive=false, falls=false, isolation=false}:{news2?:number;invasive?:boolean;falls?:boolean;isolation?:boolean;}){
-  let score = news2;
-  if (invasive) score += 2;
-  if (falls) score += 1;
-  if (isolation) score += 1;
-  return score; // mayor = más crítico
-}
+# Lógica de prioridad + tests
+Write-FromClipboard apps/web/src/handover/priority.ts
+Write-FromClipboard apps/web/src/handover/priority.test.ts
+
+# Builders FHIR (Bundle/Composition/Observations/Provenance) + test
+Write-FromClipboard apps/web/src/fhir/builders.ts
+Write-FromClipboard apps/web/src/fhir/builders.test.ts
+
+# Botón de micrófono (Web Speech API) y página Handover
+Write-FromClipboard apps/web/src/components/voice/MicButton.tsx
+Write-FromClipboard apps/web/src/pages/Handover.tsx
+
+# Cola offline/outbox + IndexedDB
+Write-FromClipboard apps/web/src/lib/indexeddb.ts
+Write-FromClipboard apps/web/src/lib/outbox.ts
+
+# Telemetría mínima FE
+Write-FromClipboard apps/web/src/lib/otel.ts
+
