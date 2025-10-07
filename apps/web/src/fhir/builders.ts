@@ -1,60 +1,19 @@
-import type { Bundle, Resource } from "./types"; // asume tienes types, si no, crea dummies
-const now = () => new Date().toISOString();
+# Lógica de prioridad + tests
+Write-FromClipboard apps/web/src/handover/priority.ts
+Write-FromClipboard apps/web/src/handover/priority.test.ts
 
-function txBundle(entries: Resource[]): Bundle {
-  return {
-    resourceType: "Bundle",
-    type: "transaction",
-    entry: entries.map(r => ({ resource: r, request: { method: "POST", url: r.resourceType } }))
-  } as any;
-}
+# Builders FHIR (Bundle/Composition/Observations/Provenance) + test
+Write-FromClipboard apps/web/src/fhir/builders.ts
+Write-FromClipboard apps/web/src/fhir/builders.test.ts
 
-export function buildHandoverBundle({patientRef, note, byUser}: {patientRef:string; note:string; byUser:string;}): Bundle {
-  const obs: any = {
-    resourceType: "Observation",
-    status: "final",
-    code: { coding: [{ system:"http://loinc.org", code:"11506-3", display:"Report of clinical notes" }]},
-    subject: { reference: patientRef },
-    effectiveDateTime: now(),
-    performer: [{ reference: byUser }],
-    valueString: note
-  };
-  return txBundle([obs]);
-}
+# Botón de micrófono (Web Speech API) y página Handover
+Write-FromClipboard apps/web/src/components/voice/MicButton.tsx
+Write-FromClipboard apps/web/src/pages/Handover.tsx
 
-export function buildScaleBundle({patientRef, code, value, byUser}:{patientRef:string; code:string; value:number; byUser:string;}): Bundle {
-  const obs: any = {
-    resourceType: "Observation",
-    status: "final",
-    code: { coding: [{ system:"http://loinc.org", code, display:"Scale score" }]},
-    subject: { reference: patientRef },
-    effectiveDateTime: now(),
-    performer: [{ reference: byUser }],
-    valueQuantity: { value }
-  };
-  return txBundle([obs]);
-}
+# Cola offline/outbox + IndexedDB
+Write-FromClipboard apps/web/src/lib/indexeddb.ts
+Write-FromClipboard apps/web/src/lib/outbox.ts
 
-export function buildEConsentBundle({patientRef, consentText, byUser}:{patientRef:string; consentText:string; byUser:string;}): Bundle {
-  const consent: any = {
-    resourceType: "Consent",
-    status: "active",
-    scope: { coding:[{ system:"http://terminology.hl7.org/CodeSystem/consentscope", code:"patient-privacy" }]},
-    patient: { reference: patientRef },
-    dateTime: now(),
-    sourceAttachment: { contentType:"text/plain", data: Buffer.from(consentText).toString("base64") }
-  };
-  return txBundle([consent]);
-}
+# Telemetría mínima FE
+Write-FromClipboard apps/web/src/lib/otel.ts
 
-export function buildBCMABundle({patientRef, medCode, performerRef}:{patientRef:string; medCode:string; performerRef:string;}): Bundle {
-  const ma: any = {
-    resourceType: "MedicationAdministration",
-    status: "in-progress",
-    subject: { reference: patientRef },
-    effectiveDateTime: now(),
-    medicationCodeableConcept: { coding:[{ system:"http://www.whocc.no/atc", code: medCode }]},
-    performer: [{ actor: { reference: performerRef }}]
-  };
-  return txBundle([ma]);
-}
