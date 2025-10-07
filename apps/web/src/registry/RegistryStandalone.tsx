@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import catalogData from "./catalogs/comorbidities.es.json";
 import { ComorbidityChips } from "./ComorbidityChips";
 import { buildFhirBundle } from "./mappers";

@@ -1,4 +1,4 @@
-﻿function nowISO(){ return new Date().toISOString(); }
+function nowISO(){ return new Date().toISOString(); }
 
 export function buildFhirBundle(data:any){
   const patientId = `Patient/${rnd()}`;

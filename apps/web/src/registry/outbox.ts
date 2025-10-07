@@ -1,4 +1,4 @@
-﻿import { get, set } from "idb-keyval";
+import { get, set } from "idb-keyval";
 import { sendBundleToFhir } from "../fhir/sendBundle";
 
 const KEY = "nurseos_outbox_bundles";
