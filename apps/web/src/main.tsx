@@ -6,6 +6,9 @@ import AppRouter from "./AppRouter";
 import { Toaster } from "react-hot-toast";
 import "./index.css";
 import "./lib/fetch-interceptor";
+import { isFlagEnabled } from './config/flags';
+import { registerSW } from './pwa/register-sw';
+if (isFlagEnabled('pwa')) registerSW();
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false, retry: 1 } },
